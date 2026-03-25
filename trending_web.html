@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITHSIM THAKABUNCHAI | Interactive</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: #111111;
+            --accent: #3b82f6;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* All cards are now clickable buttons */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 25px;
+            transition: 0.3s ease;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+            background: #161616;
+        }
+
+        .hero { grid-column: span 3; grid-row: span 2; background: linear-gradient(135deg, #111, #1e1b4b); }
+        .wide { grid-column: span 2; }
+        .tall { grid-row: span 2; }
+
+        h1 { font-size: 3rem; margin: 0; color: var(--accent); }
+        
+        /* Modal (Popup) Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #111;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--accent);
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--accent);
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bento-grid">
+    <div class="card hero" onclick="openModal('About Me', 'I am Ithsim Thakabunchai, a Year 2 IT student at RUPP. I specialize in Software Engineering and Hardware.')">
+        <div style="font-size: 1.5rem;">🇰🇭</div>
+        <h1>ITHSIM</h1>
+        <p>Click to see my full profile.</p>
+    </div>
+
+    <div class="card tall" onclick="openModal('My Skills', 'Expertise in C++, JavaScript, Arduino, and Cisco Networking.')">
+        <h3>Tech Stack</h3>
+        <p>View Skills 🔹</p>
+    </div>
+
+    <div class="card" onclick="openModal('Smart RFID Project', 'Successfully built a door lock system using Arduino Uno, MFRC522, and a Servo Motor for my school project.')">
+        <h3>Smart RFID</h3>
+        <p>Details 🔐</p>
+    </div>
+
+    <div class="card wide" onclick="openModal('BG FILMES', 'My branding and marketing agency. I create logos, scripts, and video content.')">
+        <h3>BG FILMES</h3>
+        <p>Creative Studio 🎬</p>
+    </div>
+
+    <div class="card" onclick="location.href='mailto:your-email@example.com'">
+        <h3>Contact</h3>
+        <p>Send Email 📧</p>
+    </div>
+</div>
+
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle" style="color: var(--accent);">Title</h2>
+        <p id="modalDescription">Description goes here.</p>
+        <button class="close-btn" onclick="closeModal()">Close Window</button>
+    </div>
+</div>
+
+<script>
+    function openModal(title, text) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalDescription').innerText = text;
+        document.getElementById('infoModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('infoModal').style.display = 'none';
+    }
+
+    // Close modal if user clicks outside of it
+    window.onclick = function(event) {
+        let modal = document.getElementById('infoModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+
+</body>
+</html>
